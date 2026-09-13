@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIP-HOP NATION X | Your Hip-Hop. Your Station.</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --neon-purple: #bf00ff;
+            --electric-violet: #8a2be2;
+            --deep-purple: #100326;
+            --dark-card: #160733;
+            --text-glow: #e28fff;
+            --cyber-pink: #ff007f;
+            --silver-metal: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            background-color: #080214;
+            color: var(--silver-metal);
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND EFFECTS */
+        .city-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                linear-gradient(to bottom, rgba(8, 2, 20, 0.4), rgba(8, 2, 20, 0.95)),
+                radial-gradient(circle at center, rgba(191, 0, 255, 0.25) 0%, rgba(8, 2, 20, 0.9) 70%);
+            z-index: -1;
+        }
+
+        /* NAVIGATION */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(16, 3, 38, 0.85);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid rgba(191, 0, 255, 0.4);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
+        }
+
+        .brand-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        .brand-logo span {
+            color: var(--cyber-pink);
+            text-shadow: 0 0 10px var(--cyber-pink);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-glow);
+            text-shadow: 0 0 8px var(--neon-purple);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .banner-art {
+            position: relative;
+            max-width: 420px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .banner-art svg {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(191, 0, 255, 0.6), 0 0 60px rgba(138, 43, 226, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 25px rgba(191, 0, 255, 0.5); }
+            100% { box-shadow: 0 0 55px rgba(191, 0, 255, 0.9), 0 0 80px rgba(255, 0, 127, 0.6); }
+        }
+
+        /* AUDIO PLAYER STYLES */
+        .player-deck {
+            background: var(--dark-card);
+            border: 2px solid var(--neon-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            position: relative;
+        }
+
+        .air-status {
+            background: #ff0055;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px #ff0055;
+            animation: blinker 1.8s infinite;
+        }
+
+        .air-status::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0.4; }
+        }
+
+        .current-track-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .current-track-artist {
+            color: var(--text-glow);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* VISUALIZER */
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 45px;
+            margin: 0.5rem 0;
+        }
+
+        .v-bar {
+            width: 7px;
+            height: 8px;
+            background: var(--neon-purple);
+            border-radius: 4px;
+            transition: height 0.1s ease;
+        }
+
+        .is-playing .v-bar {
+            animation: bounce 0.6s infinite alternate ease-in-out;
+        }
+
+        .is-playing .v-bar:nth-child(2) { animation-delay: 0.15s; }
+        .is-playing .v-bar:nth-child(3) { animation-delay: 0.3s; }
+        .is-playing .v-bar:nth-child(4) { animation-delay: 0.1s; }
+        .is-playing .v-bar:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0% { height: 8px; }
+            100% { height: 42px; background: var(--cyber-pink); box-shadow: 0 0 12px var(--cyber-pink); }
+        }
+
+        /* CONTROLS */
+        .controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .play-trigger {
+            background: linear-gradient(135deg, var(--neon-purple), var(--cyber-pink));
+            border: none;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-trigger:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--cyber-pink);
+        }
+
+        .play-trigger:focus-visible,
+        nav a:focus-visible {
+            outline: 2px solid var(--text-glow);
+            outline-offset: 3px;
+        }
+
+        .vol-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .vol-control input[type=range] {
+            accent-color: var(--neon-purple);
+            cursor: pointer;
+        }
+
+        /* CONTENT SECTIONS */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 12px var(--neon-purple);
+            letter-spacing: 2px;
+        }
+
+        /* SCHEDULE CARDS */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--dark-card);
+            border-left: 5px solid var(--neon-purple);
+            padding: 1.8rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-left-color: var(--cyber-pink);
+            box-shadow: 0 8px 25px rgba(191, 0, 255, 0.3);
+        }
+
+        .time-slot {
+            color: var(--cyber-pink);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .show-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+
+        .host-name {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        /* COUNTDOWN LIST */
+        .chart-wrapper {
+            background: var(--dark-card);
+            border-radius: 16px;
+            border: 1px solid rgba(191, 0, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            gap: 1.5rem;
+        }
+
+        .chart-row:last-child {
+            border-bottom: none;
+        }
+
+        .rank {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--cyber-pink);
+            width: 40px;
+        }
+
+        .song-info {
+            flex: 1;
+        }
+
+        .song-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .song-artist {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #04010a;
+            padding: 3rem 5% 1.5rem;
+            border-top: 1px solid rgba(191, 0, 255, 0.3);
+            text-align: center;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .socials a {
+            color: #fff;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .socials a:hover {
+            color: var(--cyber-pink);
+            transform: scale(1.2);
+            text-shadow: 0 0 10px var(--cyber-pink);
+        }
+
+        .copy-notice {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            nav ul {
+                gap: 1.2rem;
+            }
+
+            .hero {
+                padding-top: 9rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .banner-art svg,
+            .air-status,
+            .is-playing .v-bar,
+            .card,
+            .socials a {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="city-background"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="brand-logo">Hip-Hop <span>Nation X</span></div>
+        <nav>
+            <ul>
+                <li><a href="#listen">Live Stream</a></li>
+                <li><a href="#schedule">Lineup</a></li>
+                <li><a href="#top5">Top 5 Countdown</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO & AUDIO PLAYER -->
+    <section class="hero" id="listen">
+        <div class="banner-art">
+            <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hip-Hop Nation X logo">
+                <defs>
+                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1a0838"/>
+                        <stop offset="100%" stop-color="#3b0a5e"/>
+                    </linearGradient>
+                    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#bf00ff"/>
+                        <stop offset="100%" stop-color="#ff007f"/>
+                    </linearGradient>
+                </defs>
+                <rect width="420" height="320" fill="url(#bgGrad)"/>
+                <circle cx="60" cy="50" r="90" fill="#bf00ff" opacity="0.15"/>
+                <circle cx="370" cy="270" r="110" fill="#ff007f" opacity="0.12"/>
+                <polygon points="150,70 165,40 185,60 210,30 235,60 255,40 270,70" fill="none" stroke="#d9d9d9" stroke-width="3"/>
+                <line x1="150" y1="70" x2="270" y2="70" stroke="#d9d9d9" stroke-width="3"/>
+                <circle cx="165" cy="40" r="5" fill="#bf00ff"/>
+                <circle cx="210" cy="30" r="5" fill="#ff007f"/>
+                <circle cx="255" cy="40" r="5" fill="#bf00ff"/>
+                <text x="210" y="140" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="900" font-size="38" fill="#ffffff" style="text-transform:uppercase;letter-spacing:2px;">HIP-HOP</text>
+                <text x="210" y="185" text-anchor="middle" font-family="Orbitron, sans-serif" font-weight="900" font-size="38" fill="url(#textGrad)" style="text-transform:uppercase;letter-spacing:2px;">NATION X</text>
+                <rect x="150" y="210" width="120" height="30" rx="15" fill="none" stroke="#bf00ff" stroke-width="2"/>
+                <text x="210" y="231" text-anchor="middle" font-family="Rajdhani, sans-serif" font-weight="700" font-size="15" fill="#ff007f" style="letter-spacing:2px;">ON AIR</text>
+                <text x="210" y="270" text-anchor="middle" font-family="Rajdhani, sans-serif" font-weight="600" font-size="16" fill="#e0e0e0" style="letter-spacing:3px;">YOUR HIP-HOP. YOUR STATION.</text>
+                <text x="210" y="300" text-anchor="middle" font-family="Rajdhani, sans-serif" font-weight="500" font-size="11" fill="#888">&#169; GREGG ALLAN HICKS. ALL RIGHTS RESERVED.</text>
+            </svg>
+        </div>
+
+        <div class="player-deck">
+            <div class="air-status">ON AIR</div>
+
+            <div class="visualizer" id="visualizer">
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
+                <div class="v-bar"></div>
+            </div>
+
+            <div class="track-details">
+                <div class="current-track-title" id="trackTitle">Live Hip-Hop Broadcast</div>
+                <div class="current-track-artist" id="trackArtist">Hip-Hop Nation X - Stream 108.4 FM</div>
+            </div>
+
+            <div class="controls-row">
+                <div class="vol-control">
+                    <i class="fa-solid fa-volume-low" aria-hidden="true"></i>
+                    <input type="range" id="volSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+                    <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+                </div>
+
+                <button class="play-trigger" id="playBtn" aria-label="Play or pause stream">
+                    <i class="fa-solid fa-play" id="playIcon" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div id="playerStatus" style="min-height:1.2rem;font-size:0.85rem;color:#aaa;" aria-live="polite"></div>
+
+            <!-- Audio Stream (demo track; swap src for your real stream URL) -->
+            <audio id="audioStream" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+        </div>
+    </section>
+
+    <!-- SCHEDULE SECTION -->
+    <section id="schedule">
+        <h2 class="section-header">Daily Show Lineup</h2>
+        <div class="schedule-grid">
+            <div class="card">
+                <div class="time-slot">06:00 AM - 10:00 AM</div>
+                <div class="show-title">Morning Grind Radio</div>
+                <div class="host-name">Hosted by DJ Scratch &amp; MC Vibe</div>
+            </div>
+            <div class="card">
+                <div class="time-slot">10:00 AM - 02:00 PM</div>
+                <div class="show-title">Midday Heatwave</div>
+                <div class="host-name">Hosted by DJ Royale</div>
+            </div>
+            <div class="card">
+                <div class="time-slot">02:00 PM - 07:00 PM</div>
+                <div class="show-title">Drive At 5 Block Party</div>
+                <div class="host-name">Hosted by DJ Venom</div>
+            </div>
+            <div class="card">
+                <div class="time-slot">07:00 PM - 12:00 AM</div>
+                <div class="show-title">Underground X-Zone</div>
+                <div class="host-name">Hosted by Host K-Knight</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP 5 COUNTDOWN -->
+    <section id="top5">
+        <h2 class="section-header">Nation Top 5 Countdown</h2>
+        <div class="chart-wrapper">
+            <div class="chart-row">
+                <div class="rank">01</div>
+                <div class="song-info">
+                    <div class="song-title">City Lights &amp; Neon Nights</div>
+                    <div class="song-artist">K-Knight feat. Chrome</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="rank">02</div>
+                <div class="song-info">
+                    <div class="song-title">Crown &amp; Kingdom</div>
+                    <div class="song-artist">Supreme Syndicate</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="rank">03</div>
+                <div class="song-info">
+                    <div class="song-title">Heavy Bassline</div>
+                    <div class="song-artist">DJ Scratch</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="rank">04</div>
+                <div class="song-info">
+                    <div class="song-title">Street Royalty</div>
+                    <div class="song-artist">Vibe Nation</div>
+                </div>
+            </div>
+            <div class="chart-row">
+                <div class="rank">05</div>
+                <div class="song-info">
+                    <div class="song-title">Purple Smoke</div>
+                    <div class="song-artist">The X-Factor</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="socials">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="copy-notice">&copy; Gregg Allan Hicks. All rights reserved.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        const audio = document.getElementById('audioStream');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const visualizer = document.getElementById('visualizer');
+        const volSlider = document.getElementById('volSlider');
+        const statusEl = document.getElementById('playerStatus');
+
+        audio.volume = parseFloat(volSlider.value);
+
+        function setPlayingUI(isPlaying) {
+            playIcon.classList.toggle('fa-play', !isPlaying);
+            playIcon.classList.toggle('fa-pause', isPlaying);
+            visualizer.classList.toggle('is-playing', isPlaying);
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                statusEl.textContent = 'Loading stream…';
+                audio.play()
+                    .then(() => {
+                        statusEl.textContent = '';
+                        setPlayingUI(true);
+                    })
+                    .catch((err) => {
+                        statusEl.textContent = 'Playback failed — tap play again.';
+                        setPlayingUI(false);
+                        console.error('Playback error:', err);
+                    });
+            } else {
+                audio.pause();
+                setPlayingUI(false);
+            }
+        });
+
+        audio.addEventListener('ended', () => setPlayingUI(false));
+        audio.addEventListener('pause', () => setPlayingUI(false));
+        audio.addEventListener('waiting', () => { statusEl.textContent = 'Buffering…'; });
+        audio.addEventListener('playing', () => { statusEl.textContent = ''; });
+        audio.addEventListener('error', () => {
+            statusEl.textContent = 'Stream unavailable right now.';
+            setPlayingUI(false);
+        });
+
+        volSlider.addEventListener('input', (e) => {
+            audio.volume = parseFloat(e.target.value);
+        });
+    </script>
+</body>
+</html>
